@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -10,7 +13,7 @@ import javax.swing.border.TitledBorder;
 import controller.Controller;
 
 
-public class PanelOeste extends JPanel {
+public class PanelOeste extends JPanel implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	private Controller controller;
@@ -50,6 +53,31 @@ public class PanelOeste extends JPanel {
 		this.cbFuncion.setBounds(88, 3, 140, 25);		
 		this.add(jlFuncion);
 		this.add(this.cbFuncion);
+		this.cbFuncion.addActionListener (new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+		    	
+		    	JComboBox<String> aux;
+				
+				if((aux = (JComboBox<String>)e.getSource()) == cbFuncion) {
+					
+					String selecFuncion = (String)aux.getSelectedItem();
+					
+					if("Funcion 1".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Funcion 1");						
+					} else if("Funcion 2".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Funcion 2");
+					} else if("Funcion 3".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Funcion 3");
+					} else if("Funcion 4".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Funcion 4");
+					} else if("Funcion 5".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Funcion 5");
+					}
+					
+				}
+		        
+		    }
+		});
 		
 		/* -- Text Field para la precision  -- */
 		JPanel jpCromosomas = new JPanel();
@@ -110,6 +138,24 @@ public class PanelOeste extends JPanel {
 		this.cbCruce.setBounds(90, 250, 140, 25);		
 		this.add(jlCruce);
 		this.add(this.cbCruce);
+		this.cbCruce.addActionListener (new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+		    	
+		    	JComboBox<String> aux;
+				
+				if((aux = (JComboBox<String>)e.getSource()) == cbCruce) {
+					
+					String selecFuncion = (String)aux.getSelectedItem();
+					
+					if("Monopunto".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Monopunto");
+					} else if("Multipunto".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Multipunto");
+					}					
+				}
+		        
+		    }
+		});
 		
 		/* -- Combo Box para las selecciones -- */
 		JLabel jlSeleccion = new JLabel("Funcion");
@@ -120,6 +166,24 @@ public class PanelOeste extends JPanel {
 		this.cbSeleccion.setBounds(90, 290, 140, 25);		
 		this.add(jlSeleccion);
 		this.add(this.cbSeleccion);
+		this.cbSeleccion.addActionListener (new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+		    	
+		    	JComboBox<String> aux;
+				
+				if((aux = (JComboBox<String>)e.getSource()) == cbSeleccion) {
+					
+					String selecFuncion = (String)aux.getSelectedItem();
+					
+					if("Ruleta".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Ruleta");
+					} else if("Estocastico".equalsIgnoreCase(selecFuncion)){
+						System.out.println("Estocastico");
+					}					
+				}
+		        
+		    }
+		});
 		
 		/* -- Boton para lanzar una nueva copia -- */
 		this.lanzarCopia = new JButton("Lanzar una copia");
@@ -139,6 +203,20 @@ public class PanelOeste extends JPanel {
 		/* ########################### */
 		
 
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource() == this.lanzarCopia) {
+			
+		} else if(e.getSource() == this.relanzarAG) {
+			
+		} else if(e.getSource() == this.eliminarAG) {
+			
+		}
+		
 	}
 	
 	
