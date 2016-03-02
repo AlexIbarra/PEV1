@@ -47,4 +47,16 @@ public class CromosomaF4 implements Cromosoma {
 		this.xmax = xmax;
 	}
 
+	@Override
+	public void inicializaCromosoma() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void inicializaAptitud() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

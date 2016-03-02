@@ -10,11 +10,12 @@ public class AGenetico {
 	private double prob_cruce;
 	private double prob_mutacion;
 	private double toleracia;
+	private Datos data;
 	
 	
 	/* CONSTRUCTORA */
-	public AGenetico() {
-		
+	public AGenetico(Datos dat) {
+		this.data = dat;
 	}
 	
 	
@@ -22,6 +23,25 @@ public class AGenetico {
 	/* METODOS PUBLICOS */
 	public void inicializa() {
 		
+		String func = data.getFuncion();
+		
+		for(int i=0; i<this.tam_poblacion; i++) {
+			
+			if(func.equals("Funcion 1")) {
+				this.poblacion[i] = new CromosomaF1();
+			} else if(func.equals("Funcion 2")) {
+				this.poblacion[i] = new CromosomaF2();
+			} else if(func.equals("Funcion 3")) {
+				this.poblacion[i] = new CromosomaF3();
+			} else if(func.equals("Funcion 4")) {
+				this.poblacion[i] = new CromosomaF4();
+			} else {
+				this.poblacion[i] = new CromosomaF5();
+			}
+			
+			this.poblacion[i].inicializaCromosoma();
+			this.poblacion[i].inicializaAptitud();
+		}
 	}
 	
 	public void evaluarPoblacion() {
@@ -45,8 +65,11 @@ public class AGenetico {
 	}
 
 	public boolean terminado() {
-		
 		return false;
+	}
+	
+	public Cromosoma elMejor() {
+		return this.mejorIndividuo;
 	}
 
 }
