@@ -10,28 +10,28 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Datos datos = new Datos();
-		Controller controller = new Controller(datos);
+//		Datos datos = new Datos();
+		Controller controller = new Controller();
 		Window win = new Window(controller);
 		
 		
-		if(controller.hayDatos()) {
-			AGenetico AG = new AGenetico(datos);
-			AG.inicializa();
-			AG.evaluarPoblacion();
-			 
-			while(!AG.terminado()) {
-			 
-				AG.incGeneracion();
-				AG.seleccion();
-				AG.reproduccion();
-				AG.mutacion();
-				AG.evaluarPoblacion();
-			}
-			  
-			Cromosoma mejor = AG.elMejor();
-			System.out.println(mejor.toString());
-		} 
+//		if(controller.hayDatos()) {
+//			AGenetico AG = new AGenetico(datos);
+//			AG.inicializa();
+//			AG.evaluarPoblacion();
+//			 
+//			while(!AG.terminado()) {
+//			 
+//				AG.incGeneracion();
+//				AG.seleccion();
+//				AG.reproduccion();
+//				AG.mutacion();
+//				AG.evaluarPoblacion();
+//			}
+//			  
+//			Cromosoma mejor = AG.elMejor();
+//			System.out.println(mejor.toString());
+//		} 
 
 	}
 

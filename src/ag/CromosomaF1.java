@@ -3,59 +3,72 @@ package ag;
 public class CromosomaF1 implements Cromosoma {
 	
 	
-	private Gen[] genes;
-	private int[] fenotipos;
+	private Gen genes[];
+	private int fenotipos[];
+	private double aptitud;
+	private double puntuacion;
+	private double punt_acumulada;
 	private int xmin;
 	private int xmax;
+	private int tamCromosoma;
 	
+	
+	/* CONSTRUCTORA */
+	public CromosomaF1() {
+	
+		this.xmin = -250;
+		this.xmax = 250;
+		this.tamCromosoma = 1;
+		this.genes = new Gen[1];
+		this.fenotipos = new int[1];
+	}
 	
 	
 	/* METODOS PUBLICOS */
 
 	@Override
 	public double evalua() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return -(Math.abs(this.fenotipos[0]*Math.sin(Math.sqrt(Math.abs(this.fenotipos[0])))));
 	}
+
+//	@Override
+//	public double fenotipo() {
+//
+//		return 0;
+//	}
+//
+//
+//	public double funcion() {
+//
+//		return -(Math.abs(this.fenotipos[0]*Math.sin(Math.sqrt(Math.abs(this.fenotipos[0])))));
+//	}
 
 	@Override
-	public double fenotipo() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public void inicializaCromosoma(Datos data) {
 
-	@Override
-	public double funcion() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	public int getXmin() {
-		return xmin;
-	}
-
-	public void setXmin(int xmin) {
-		this.xmin = xmin;
-	}
-
-	public int getXmax() {
-		return xmax;
-	}
-
-	public void setXmax(int xmax) {
-		this.xmax = xmax;
-	}
-
-	@Override
-	public void inicializaCromosoma() {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < this.tamCromosoma; i++) {
+			this.genes[i] = new Gen();
+			this.genes[i].calculaLongitud(this.xmin, this.xmax, data.getPrecision());
+			this.genes[i].inicializaGen();			
+			this.genes[i].calculaFenotipo(this.xmin, this.xmax);
+		}
 		
 	}
 
 	@Override
-	public void inicializaAptitud() {
-		// TODO Auto-generated method stub
-		
+	public void inicializaAptitud(double apt) {
+		this.aptitud = apt;		
 	}
+
+
+	public double getAptitud() {
+		return aptitud;
+	}
+
+
+//	public void setAptitud(double aptitud) {
+//		this.aptitud = aptitud;
+//	}
 
 }

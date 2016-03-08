@@ -19,17 +19,17 @@ public class CromosomaF4 implements Cromosoma {
 		return 0;
 	}
 
-	@Override
-	public double fenotipo() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double funcion() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	@Override
+//	public double fenotipo() {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+//
+//	@Override
+//	public double funcion() {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 	
 	public int getXmin() {
 		return xmin;
@@ -48,13 +48,13 @@ public class CromosomaF4 implements Cromosoma {
 	}
 
 	@Override
-	public void inicializaCromosoma() {
+	public void inicializaCromosoma(Datos data) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void inicializaAptitud() {
+	public void inicializaAptitud(double apt) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+
+import ag.Datos;
 import controller.Controller;
 
 
@@ -17,6 +19,9 @@ public class PanelOeste extends JPanel implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	private Controller controller;
+	private String selectedFunction;
+	private String selectedCruce;
+	private String selectedSeleccion;
 	private String[] func = {"Funcion 1", "Funcion 2", "Funcion 3", "Funcion 4", "Funcion 5"};
 	private String[] cruces = {"Monopunto", "Multipunto"};
 	private String[] selecciones = {"Ruleta", "Estocastico"};
@@ -59,25 +64,13 @@ public class PanelOeste extends JPanel implements ActionListener {
 		    	JComboBox<String> aux;
 				
 				if((aux = (JComboBox<String>)e.getSource()) == cbFuncion) {
-					
-					String selecFuncion = (String)aux.getSelectedItem();
-					
-					if("Funcion 1".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Funcion 1");						
-					} else if("Funcion 2".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Funcion 2");
-					} else if("Funcion 3".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Funcion 3");
-					} else if("Funcion 4".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Funcion 4");
-					} else if("Funcion 5".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Funcion 5");
-					}
-					
+	
+					selectedFunction = (String)aux.getSelectedItem();									
 				}
 		        
 		    }
 		});
+		this.selectedFunction = "Funcion 1";
 		
 		/* -- Text Field para la precision  -- */
 		JPanel jpCromosomas = new JPanel();
@@ -145,20 +138,16 @@ public class PanelOeste extends JPanel implements ActionListener {
 				
 				if((aux = (JComboBox<String>)e.getSource()) == cbCruce) {
 					
-					String selecFuncion = (String)aux.getSelectedItem();
+					selectedCruce = (String)aux.getSelectedItem();
 					
-					if("Monopunto".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Monopunto");
-					} else if("Multipunto".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Multipunto");
-					}					
 				}
 		        
 		    }
 		});
+		this.selectedCruce = "Monopunto";
 		
 		/* -- Combo Box para las selecciones -- */
-		JLabel jlSeleccion = new JLabel("Funcion");
+		JLabel jlSeleccion = new JLabel("Seleccion");
 		this.cbSeleccion = new JComboBox<String>(selecciones);
 		this.cbSeleccion.setSelectedIndex(0);
 		jlSeleccion.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -173,32 +162,31 @@ public class PanelOeste extends JPanel implements ActionListener {
 				
 				if((aux = (JComboBox<String>)e.getSource()) == cbSeleccion) {
 					
-					String selecFuncion = (String)aux.getSelectedItem();
+					selectedSeleccion = (String)aux.getSelectedItem();
 					
-					if("Ruleta".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Ruleta");
-					} else if("Estocastico".equalsIgnoreCase(selecFuncion)){
-						System.out.println("Estocastico");
-					}					
 				}
 		        
 		    }
 		});
+		this.selectedSeleccion = "Ruleta";
 		
 		/* -- Boton para lanzar una nueva copia -- */
 		this.lanzarCopia = new JButton("Lanzar una copia");
 		this.lanzarCopia.setBounds(18, 556, 210, 27); // x, y, width, height
 		this.add(this.lanzarCopia);
+		this.lanzarCopia.addActionListener(this);
 		
 		/* -- Boton para relanzar este AG (algoritmo genetico) -- */
 		this.relanzarAG = new JButton("Relanzar este AG");
 		this.relanzarAG.setBounds(18, 588, 210, 27); // x, y, width, height
 		this.add(this.relanzarAG);
+		this.relanzarAG.addActionListener(this);
 		
 		/* -- Boton para eliminar este AG (algoritmo genetico) -- */
 		this.eliminarAG = new JButton("Eliminar este AG");
 		this.eliminarAG.setBounds(18, 620, 210, 27); // x, y, width, height
 		this.add(this.eliminarAG);
+		this.eliminarAG.addActionListener(this);
 		
 		/* ########################### */
 		
@@ -210,6 +198,19 @@ public class PanelOeste extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == this.lanzarCopia) {
+			
+			Datos newData = new Datos();
+			newData.setFuncion(this.selectedFunction);
+			newData.setPrecision(Double.parseDouble(this.precision.getText()));
+			newData.setPoblacion(Integer.parseInt(this.poblacion.getText()));
+			newData.setIteraciones(Integer.parseInt(this.iteraciones.getText()));
+			newData.setPorcCruce(Double.parseDouble(this.porcCruces.getText()));
+			newData.setPorcMutacion(Double.parseDouble(this.porcMutacion.getText()));
+			newData.setSemilla(Integer.parseInt(this.semilla.getText()));
+			newData.setTipoCruce(this.selectedCruce);
+			newData.setSeleccion(this.selectedSeleccion);
+			this.controller.setData(newData);
+			this.controller.ejecuta();
 			
 		} else if(e.getSource() == this.relanzarAG) {
 			

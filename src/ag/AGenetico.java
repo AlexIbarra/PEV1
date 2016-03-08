@@ -2,9 +2,7 @@ package ag;
 
 public class AGenetico {
 	
-	private Cromosoma[] poblacion;
-	private int tam_poblacion;
-	private int max_generaciones;
+	private Cromosoma poblacion[];
 	private Cromosoma mejorIndividuo;
 	private int pos_mejorInd;
 	private double prob_cruce;
@@ -14,18 +12,30 @@ public class AGenetico {
 	
 	
 	/* CONSTRUCTORA */
-	public AGenetico(Datos dat) {
-		this.data = dat;
+	public AGenetico() {
+//		this.data = dat;;
 	}
-	
-	
-	
+
+
+
 	/* METODOS PUBLICOS */
 	public void inicializa() {
 		
 		String func = data.getFuncion();
 		
-		for(int i=0; i<this.tam_poblacion; i++) {
+		if(func.equals("Funcion 1")) {
+			this.poblacion = new CromosomaF1[data.getPoblacion()];
+		} else if(func.equals("Funcion 2")) {
+			this.poblacion = new CromosomaF2[data.getPoblacion()];
+		} else if(func.equals("Funcion 3")) {
+			this.poblacion = new CromosomaF3[data.getPoblacion()];
+		} else if(func.equals("Funcion 4")) {
+			this.poblacion = new CromosomaF4[data.getPoblacion()];
+		} else {
+			this.poblacion = new CromosomaF5[data.getPoblacion()];
+		}
+		
+		for(int i=0; i<data.getPoblacion(); i++) {
 			
 			if(func.equals("Funcion 1")) {
 				this.poblacion[i] = new CromosomaF1();
@@ -39,8 +49,8 @@ public class AGenetico {
 				this.poblacion[i] = new CromosomaF5();
 			}
 			
-			this.poblacion[i].inicializaCromosoma();
-			this.poblacion[i].inicializaAptitud();
+			this.poblacion[i].inicializaCromosoma(data);
+			this.poblacion[i].inicializaAptitud(this.poblacion[i].evalua());
 		}
 	}
 	
@@ -65,11 +75,35 @@ public class AGenetico {
 	}
 
 	public boolean terminado() {
-		return false;
+		data.setIteraciones(data.getIteraciones()-1);
+		return (data.getIteraciones() > 0);
 	}
 	
 	public Cromosoma elMejor() {
 		return this.mejorIndividuo;
+	}
+	
+	public void ejecutaAlgoritmo() {
+		
+		inicializa();
+		evaluarPoblacion();
+		 
+		while(!terminado()) {
+		 
+			incGeneracion();
+			seleccion();
+			reproduccion();
+			mutacion();
+			evaluarPoblacion();
+		}
+		  
+		this.mejorIndividuo = elMejor();
+	}
+
+
+
+	public void setData(Datos data) {
+		this.data = data;
 	}
 
 }
