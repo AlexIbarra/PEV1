@@ -59,4 +59,58 @@ public class CromosomaF4 implements Cromosoma {
 		
 	}
 
+	@Override
+	public Gen[] getGenes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setGenes(Gen[] genes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getNumGenes() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getPuntuacion() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setPuntuacion(double puntuacion) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getPunt_acumulada() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setPunt_acumulada(double punt_acumulada) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getAptitud() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean maximiza() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

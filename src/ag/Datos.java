@@ -87,5 +87,33 @@ public class Datos {
 	public void setSeleccion(String seleccion) {
 		this.seleccion = seleccion;
 	}
+	
+	public Cromosoma [] inicializaPob() {
+		if(funcion.equals("Funcion 1")) {
+			return new CromosomaF1[poblacion];
+		} else if(funcion.equals("Funcion 2")) {
+			return new CromosomaF2[poblacion];
+		} else if(funcion.equals("Funcion 3")) {
+			return new CromosomaF3[poblacion];
+		} else if(funcion.equals("Funcion 4")) {
+			return new CromosomaF4[poblacion];
+		} else {
+			return new CromosomaF5[poblacion];
+		}
+	}
+	
+	public Cromosoma inicializaIndiv() {
+		if(funcion.equals("Funcion 1")) {
+			return new CromosomaF1();
+		} else if(funcion.equals("Funcion 2")) {
+			return new CromosomaF2();
+		} else if(funcion.equals("Funcion 3")) {
+			return new CromosomaF3();
+		} else if(funcion.equals("Funcion 4")) {
+			return new CromosomaF4();
+		} else {
+			return new CromosomaF5();
+		}
+	}
 
 }

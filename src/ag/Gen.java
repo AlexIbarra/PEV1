@@ -38,12 +38,13 @@ public class Gen {
 	/* METODOS PUBLICOS */
 	public void calculaLongitud(int min, int max, double tol) {
 		
-		this.longIndividuo = (int) ((int) Math.log(1+((max-min)/tol)) / Math.log(2));
+		this.longIndividuo = (int) (((int) Math.log(1 + ((max-min)/tol) )) / Math.log(2));
 		this.gen = new boolean[longIndividuo];
 	}
 	
 	public double calculaFenotipo(int min, int max) {
 		return (min + (max-min) * binToDec() / (Math.pow(2, this.longIndividuo)-1));
+//		return binToDec();
 	}
 	
 	public void inicializaGen() {
@@ -53,12 +54,15 @@ public class Gen {
 			this.gen[i] = (generaAlea() >= 0.5)? true : false;
 		}
 	}
-	
-	
-	public void calculaAptitud(int min, int max) {
-//		this.aptitud = 
+
+
+	public int getLongIndividuo() {
+		return longIndividuo;
 	}
-	
-	
+
+
+	public boolean[] getGen() {
+		return gen;
+	}
 
 }

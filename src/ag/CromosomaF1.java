@@ -4,13 +4,13 @@ public class CromosomaF1 implements Cromosoma {
 	
 	
 	private Gen genes[];
-	private int fenotipos[];
+	private double fenotipos[];
 	private double aptitud;
 	private double puntuacion;
 	private double punt_acumulada;
 	private int xmin;
 	private int xmax;
-	private int tamCromosoma;
+	private int numGenes;
 	
 	
 	/* CONSTRUCTORA */
@@ -18,9 +18,9 @@ public class CromosomaF1 implements Cromosoma {
 	
 		this.xmin = -250;
 		this.xmax = 250;
-		this.tamCromosoma = 1;
+		this.numGenes = 1;
 		this.genes = new Gen[1];
-		this.fenotipos = new int[1];
+		this.fenotipos = new double[1];
 	}
 	
 	
@@ -28,8 +28,10 @@ public class CromosomaF1 implements Cromosoma {
 
 	@Override
 	public double evalua() {
+		
+		double num = Math.abs(this.fenotipos[0]*Math.sin(Math.sqrt(Math.abs(this.fenotipos[0])))); 
 
-		return -(Math.abs(this.fenotipos[0]*Math.sin(Math.sqrt(Math.abs(this.fenotipos[0])))));
+		return -(num);
 	}
 
 //	@Override
@@ -47,11 +49,11 @@ public class CromosomaF1 implements Cromosoma {
 	@Override
 	public void inicializaCromosoma(Datos data) {
 
-		for (int i = 0; i < this.tamCromosoma; i++) {
+		for (int i = 0; i < this.numGenes; i++) {
 			this.genes[i] = new Gen();
 			this.genes[i].calculaLongitud(this.xmin, this.xmax, data.getPrecision());
 			this.genes[i].inicializaGen();			
-			this.genes[i].calculaFenotipo(this.xmin, this.xmax);
+			this.fenotipos[i] = this.genes[i].calculaFenotipo(this.xmin, this.xmax);
 		}
 		
 	}
@@ -67,8 +69,44 @@ public class CromosomaF1 implements Cromosoma {
 	}
 
 
-//	public void setAptitud(double aptitud) {
-//		this.aptitud = aptitud;
-//	}
+	public Gen[] getGenes() {
+		return genes;
+	}
+
+
+	public void setGenes(Gen[] genes) {
+		this.genes = genes;
+	}
+
+
+	public int getNumGenes() {
+		return numGenes;
+	}
+
+
+	public double getPuntuacion() {
+		return puntuacion;
+	}
+
+
+	public void setPuntuacion(double puntuacion) {
+		this.puntuacion = puntuacion;
+	}
+
+
+	public double getPunt_acumulada() {
+		return punt_acumulada;
+	}
+
+
+	public void setPunt_acumulada(double punt_acumulada) {
+		this.punt_acumulada = punt_acumulada;
+	}
+
+
+	@Override
+	public boolean maximiza() {
+		return false;
+	}
 
 }

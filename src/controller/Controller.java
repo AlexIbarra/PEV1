@@ -13,7 +13,6 @@ public class Controller {
 	
 	/* CONSTRUCTORA */
 	public Controller() {
-//		this.data = dat;
 		this.algoritmo = new AGenetico();
 		this.dataFlag = false;
 	}
